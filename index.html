@@ -1,0 +1,1919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sleek Sites — Websites That Sell</title>
+
+  <!-- ═══════════════════════════════════════════
+       SECURITY HEADERS (meta fallbacks)
+       HTTP-level headers are set in _headers file
+       for Netlify / any static host.
+  ═══════════════════════════════════════════ -->
+  <!-- Block MIME-type sniffing -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <!-- Referrer: only send origin, never full URL -->
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <!-- Disable unused browser APIs -->
+  <meta http-equiv="Permissions-Policy"
+        content="accelerometer=(), camera=(), geolocation=(), gyroscope=(),
+                 magnetometer=(), microphone=(), payment=(), usb=(),
+                 interest-cohort=()">
+  <!-- Content Security Policy
+       - scripts: only self + Tailwind CDN (no eval, no data: URIs)
+       - styles:  self + inline (required) + Google Fonts
+       - fonts:   Google Fonts CDN only
+       - images:  self + the two image CDNs we use
+       - frames / objects / workers: blocked entirely
+       - form submissions: same origin only
+  -->
+  <meta http-equiv="Content-Security-Policy"
+        content="
+          default-src 'self';
+          script-src  'self' 'unsafe-inline' https://cdn.tailwindcss.com;
+          style-src   'self' 'unsafe-inline' https://fonts.googleapis.com;
+          font-src    https://fonts.gstatic.com;
+          img-src     'self' https://picsum.photos https://i.picsum.photos
+                      https://images.unsplash.com data: blob:;
+          connect-src 'none';
+          frame-src   'none';
+          object-src  'none';
+          worker-src  'none';
+          base-uri    'self';
+          form-action 'self';
+        ">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Space+Grotesk:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&display=swap"
+        rel="stylesheet" crossorigin="anonymous">
+  <style>
+    :root {
+      --void:          #070710;
+      --surface:       #0E0E1E;
+      --surface2:      #141428;
+      --surface3:      #1C1C38;
+      --purple:        #7B2FE0;
+      --purple-mid:    #9B5FEE;
+      --purple-light:  #C4A0FF;
+      --purple-glow:   rgba(123,47,224,0.22);
+      --gold:          #C9A227;
+      --gold-light:    #E8C547;
+      --gold-glow:     rgba(201,162,39,0.16);
+      --white:         #EEEEFF;
+      --white-dim:     rgba(238,238,255,0.55);
+      --white-faint:   rgba(238,238,255,0.08);
+      --border:        rgba(255,255,255,0.07);
+      --border-purple: rgba(123,47,224,0.35);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      background: var(--void);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, h5 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      letter-spacing: -0.02em;
+    }
+
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    /* ── NAV ── */
+    @keyframes navDrop {
+      from { transform: translateY(-100%); opacity: 0; }
+      to   { transform: translateY(0);     opacity: 1; }
+    }
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      padding: 0;
+      background: rgba(7,7,16,0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      animation: navDrop 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    .nav-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 28px;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      gap: 48px;
+    }
+    .nav-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      font-style: italic;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+    }
+    .nav-logo span { color: var(--gold-light); }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      flex: 1;
+    }
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--white-dim);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-left: auto;
+    }
+    .btn-nav-ghost {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--white-dim);
+      text-decoration: none;
+      padding: 8px 18px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      transition: border-color 0.2s ease, color 0.2s ease;
+    }
+    .btn-nav-ghost:hover {
+      border-color: rgba(255,255,255,0.25);
+      color: var(--white);
+    }
+    .btn-nav-cta {
+      font-size: 13px;
+      font-weight: 600;
+      color: #0A0A18;
+      text-decoration: none;
+      padding: 9px 20px;
+      background: var(--gold-light);
+      border-radius: 6px;
+      letter-spacing: 0.01em;
+      transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+      box-shadow: 0 0 20px rgba(201,162,39,0.25);
+    }
+    .btn-nav-cta:hover {
+      background: var(--gold);
+      transform: translateY(-1px);
+      box-shadow: 0 0 28px rgba(201,162,39,0.35);
+    }
+    .btn-nav-cta:active { transform: translateY(0); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 120px 0 80px;
+    }
+    @keyframes heroBgZoom {
+      from { transform: scale(1.08); }
+      to   { transform: scale(1); }
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://picsum.photos/seed/darkoffice9/1600/900');
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.25) saturate(0.6);
+      animation: heroBgZoom 18s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 60% 30%, rgba(123,47,224,0.25) 0%, transparent 65%),
+        radial-gradient(ellipse 80% 80% at 0% 100%, rgba(7,7,16,0.9) 0%, transparent 60%);
+    }
+    .hero-grid-lines {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+      background-size: 80px 80px;
+      mask-image: radial-gradient(ellipse 70% 70% at 50% 20%, black 0%, transparent 70%);
+    }
+    .hero-inner {
+      position: relative;
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 28px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--border-purple);
+      background: rgba(123,47,224,0.1);
+      color: var(--purple-light);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+    }
+    .hero-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--purple-mid);
+      box-shadow: 0 0 6px var(--purple-mid);
+      animation: pulse 2s ease infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+    .hero h1 {
+      font-size: clamp(48px, 5.5vw, 76px);
+      font-weight: 800;
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      margin-bottom: 24px;
+    }
+    .hero h1 .gold { color: var(--gold-light); }
+    .hero h1 .purple { color: var(--purple-light); }
+    .hero-sub {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--white-dim);
+      font-weight: 300;
+      max-width: 440px;
+      margin-bottom: 40px;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .btn-hero-primary {
+      background: var(--gold-light);
+      color: #080810;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 14px 30px;
+      border-radius: 8px;
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+      box-shadow: 0 0 30px rgba(232,197,71,0.3), 0 4px 16px rgba(0,0,0,0.3);
+    }
+    .btn-hero-primary:hover {
+      background: var(--gold);
+      transform: translateY(-2px);
+      box-shadow: 0 0 40px rgba(232,197,71,0.4), 0 8px 24px rgba(0,0,0,0.3);
+    }
+    .btn-hero-primary:active { transform: translateY(0); }
+    .btn-hero-ghost {
+      color: var(--white-dim);
+      font-size: 14px;
+      font-weight: 500;
+      padding: 14px 26px;
+      border-radius: 8px;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+    }
+    .btn-hero-ghost:hover {
+      border-color: rgba(255,255,255,0.2);
+      color: var(--white);
+      background: var(--white-faint);
+    }
+    .hero-trust {
+      margin-top: 52px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .hero-trust-avatars {
+      display: flex;
+    }
+    .hero-trust-avatars span {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 2px solid var(--void);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      margin-right: -10px;
+    }
+    .hero-trust-text {
+      font-size: 13px;
+      color: var(--white-dim);
+      line-height: 1.5;
+    }
+    .hero-trust-text strong { color: var(--white); font-weight: 600; }
+
+    /* ── HERO VISUAL ── */
+    .hero-visual {
+      position: relative;
+    }
+    .hero-mockup {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.05),
+        0 40px 80px rgba(0,0,0,0.6),
+        0 0 80px rgba(123,47,224,0.12);
+      position: relative;
+    }
+    .mockup-bar {
+      background: var(--surface2);
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .mockup-dots { display: flex; gap: 6px; }
+    .mockup-dots span {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+    }
+    .mockup-url {
+      flex: 1;
+      background: var(--surface3);
+      border-radius: 6px;
+      padding: 5px 12px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.01em;
+    }
+    .mockup-body {
+      padding: 0;
+    }
+    .mockup-body img {
+      width: 100%;
+      display: block;
+      height: 420px;
+      object-fit: cover;
+      filter: brightness(0.7) saturate(0.8);
+    }
+    .mockup-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 24px;
+      background: linear-gradient(to top, rgba(14,14,30,0.95) 0%, transparent 100%);
+    }
+    .mockup-tag {
+      display: inline-block;
+      background: var(--purple-glow);
+      border: 1px solid var(--border-purple);
+      color: var(--purple-light);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+    }
+    .mockup-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--white);
+    }
+    @keyframes badgeFloat {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-7px); }
+    }
+    @keyframes badgeFloatAlt {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-5px); }
+    }
+    .hero-float-badge {
+      position: absolute;
+      bottom: -20px;
+      left: -24px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      animation: badgeFloat 5s ease-in-out 1.4s infinite;
+    }
+    .float-icon {
+      width: 40px; height: 40px;
+      background: var(--gold-glow);
+      border: 1px solid rgba(201,162,39,0.3);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .float-icon svg { width: 20px; height: 20px; color: var(--gold-light); }
+    .float-text strong {
+      display: block;
+      font-size: 15px;
+      font-weight: 700;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--white);
+    }
+    .float-text span { font-size: 12px; color: var(--white-dim); }
+
+    /* ── LOGOS ── */
+    .logos-band {
+      padding: 48px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .logos-label {
+      text-align: center;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--white-dim);
+      margin-bottom: 28px;
+    }
+    .logos-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+    .logo-item {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.18);
+      letter-spacing: -0.02em;
+      transition: color 0.2s ease;
+    }
+    .logo-item:hover { color: rgba(255,255,255,0.35); }
+
+    /* ── SECTION BASE ── */
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 16px;
+    }
+    .section-tag::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 1px;
+      background: var(--gold);
+    }
+    .section-title {
+      font-size: clamp(32px, 3.5vw, 50px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      color: var(--white);
+    }
+    .section-sub {
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--white-dim);
+      font-weight: 300;
+      max-width: 480px;
+      margin-top: 14px;
+    }
+
+    /* ── SERVICES ── */
+    .services {
+      padding: 100px 0;
+      background: var(--void);
+      position: relative;
+    }
+    .services::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-purple), transparent);
+    }
+    .services-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 56px;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .service-card {
+      background: var(--surface);
+      padding: 40px 36px;
+      transition: background 0.25s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+      cursor: default;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--purple), var(--gold));
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+    .service-card:hover {
+      background: var(--surface2);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 24px rgba(123,47,224,0.08);
+    }
+    .service-card:hover::before { opacity: 1; }
+    .service-num {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--purple-mid);
+      letter-spacing: 0.1em;
+      margin-bottom: 20px;
+    }
+    .service-icon-wrap {
+      width: 48px;
+      height: 48px;
+      background: var(--purple-glow);
+      border: 1px solid var(--border-purple);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .service-icon-wrap svg { width: 24px; height: 24px; color: var(--purple-light); }
+    .service-card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+    .service-card p {
+      font-size: 14px;
+      color: var(--white-dim);
+      line-height: 1.65;
+    }
+
+    /* ── PROCESS ── */
+    .process {
+      padding: 100px 0;
+      background: var(--surface);
+      position: relative;
+      overflow: hidden;
+    }
+    .process::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 60% at 0% 50%, rgba(123,47,224,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 50% at 100% 50%, rgba(201,162,39,0.05) 0%, transparent 70%);
+    }
+    .process-inner { position: relative; }
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+      margin-top: 60px;
+      position: relative;
+    }
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: calc(12.5% + 28px);
+      right: calc(12.5% + 28px);
+      height: 1px;
+      background: linear-gradient(90deg, var(--border-purple), var(--gold-glow), var(--border-purple));
+    }
+    .step {
+      text-align: center;
+    }
+    .step-num {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--surface2);
+      border: 1px solid var(--border-purple);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--purple-light);
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 0 20px rgba(123,47,224,0.2);
+    }
+    .step h4 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+    .step p {
+      font-size: 14px;
+      color: var(--white-dim);
+      line-height: 1.65;
+    }
+
+    /* ── WORK ── */
+    .work {
+      padding: 100px 0;
+      background: var(--void);
+    }
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 56px;
+    }
+    .work-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      cursor: pointer;
+    }
+    .work-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 24px 48px rgba(0,0,0,0.4), 0 0 40px rgba(123,47,224,0.1);
+      border-color: var(--border-purple);
+    }
+    .work-card-img {
+      position: relative;
+      overflow: hidden;
+    }
+    .work-card-img img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+      filter: brightness(0.75) saturate(0.7);
+    }
+    .work-card:hover .work-card-img img { transform: scale(1.04); }
+    .work-card-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(14,14,30,0.9) 0%, rgba(14,14,30,0.1) 60%);
+    }
+    .work-card-img-tag {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: rgba(7,7,16,0.75);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 5px 12px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--white-dim);
+    }
+    .work-card-body { padding: 24px 28px 28px; }
+    .work-card-body h3 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+    .work-card-body p {
+      font-size: 14px;
+      color: var(--white-dim);
+      line-height: 1.6;
+    }
+    .work-card-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+    .tag-chip {
+      background: var(--white-faint);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 4px 12px;
+      font-size: 12px;
+      color: var(--white-dim);
+    }
+
+    /* ── PRICING ── */
+    .pricing {
+      padding: 100px 0;
+      background: var(--surface);
+      position: relative;
+      overflow: hidden;
+    }
+    .pricing::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-purple), transparent);
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 56px;
+    }
+    .pricing-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 36px 32px;
+      transition: border-color 0.25s ease, transform 0.25s ease;
+      position: relative;
+    }
+    .pricing-card.featured {
+      border-color: var(--border-purple);
+      background: linear-gradient(135deg, rgba(123,47,224,0.08) 0%, var(--surface2) 60%);
+      box-shadow: 0 0 0 1px rgba(123,47,224,0.2), 0 24px 48px rgba(123,47,224,0.1);
+    }
+    .pricing-card:hover:not(.featured) {
+      border-color: rgba(255,255,255,0.15);
+      transform: translateY(-2px);
+    }
+    .featured-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, var(--purple), var(--purple-mid));
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+    .pricing-plan {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--white-dim);
+      margin-bottom: 8px;
+    }
+    .pricing-price {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 46px;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.04em;
+      line-height: 1.2;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+    .pricing-price sup {
+      font-size: 18px;
+      font-weight: 600;
+      vertical-align: middle;
+      margin-right: 2px;
+    }
+    .pricing-desc {
+      font-size: 14px;
+      color: var(--white-dim);
+      margin-bottom: 28px;
+      line-height: 1.5;
+    }
+    .pricing-features {
+      list-style: none;
+      margin-bottom: 32px;
+    }
+    .pricing-features li {
+      font-size: 14px;
+      color: var(--white-dim);
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .pricing-features li:last-child { border-bottom: none; }
+    .pricing-features li svg { width: 15px; height: 15px; color: var(--gold-light); flex-shrink: 0; }
+    .btn-pricing {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 13px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      text-decoration: none;
+      transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+    .btn-pricing-ghost {
+      border: 1px solid var(--border);
+      color: var(--white-dim);
+    }
+    .btn-pricing-ghost:hover {
+      border-color: rgba(255,255,255,0.25);
+      color: var(--white);
+      background: var(--white-faint);
+    }
+    .btn-pricing-solid {
+      background: var(--gold-light);
+      color: #080810;
+      box-shadow: 0 0 24px rgba(232,197,71,0.25);
+    }
+    .btn-pricing-solid:hover {
+      background: var(--gold);
+      transform: translateY(-1px);
+      box-shadow: 0 0 32px rgba(232,197,71,0.35);
+    }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials {
+      padding: 100px 0;
+      background: var(--void);
+    }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 56px;
+    }
+    .testimonial-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 28px;
+      transition: border-color 0.25s ease;
+    }
+    .testimonial-card:hover { border-color: rgba(255,255,255,0.14); }
+    .quote-mark {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 48px;
+      line-height: 1;
+      color: var(--purple-mid);
+      opacity: 0.5;
+      margin-bottom: 12px;
+    }
+    .testimonial-card blockquote {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--white-dim);
+      margin-bottom: 24px;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .author-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple), var(--purple-mid));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 800;
+      color: #fff;
+    }
+    .author-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--white);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .author-biz {
+      font-size: 12px;
+      color: var(--white-dim);
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      padding: 100px 0;
+      background: var(--surface);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 80% at 50% 50%, rgba(123,47,224,0.12) 0%, transparent 70%);
+    }
+    .cta-inner {
+      position: relative;
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .cta-inner h2 {
+      font-size: clamp(36px, 4vw, 58px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+    .cta-inner h2 span { color: var(--gold-light); }
+    .cta-inner p {
+      font-size: 17px;
+      color: var(--white-dim);
+      line-height: 1.7;
+      font-weight: 300;
+      margin-bottom: 40px;
+    }
+    .cta-actions {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--void);
+      border-top: 1px solid var(--border);
+      padding: 64px 0 32px;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px;
+      margin-bottom: 56px;
+    }
+    .footer-brand p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--white-dim);
+      margin-top: 14px;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      font-style: italic;
+      color: var(--white);
+      letter-spacing: -0.02em;
+    }
+    .footer-logo span { color: var(--gold-light); }
+    .footer-col h5 {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 18px;
+    }
+    .footer-col a {
+      display: block;
+      font-size: 14px;
+      color: var(--white-dim);
+      text-decoration: none;
+      margin-bottom: 12px;
+      transition: color 0.2s ease;
+    }
+    .footer-col a:hover { color: var(--white); }
+    .footer-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin-bottom: 28px;
+    }
+    .footer-bottom {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.25);
+    }
+    .footer-bottom a { color: rgba(255,255,255,0.35); text-decoration: none; }
+    .footer-bottom a:hover { color: var(--white-dim); }
+
+    /* ============================================================
+       RESPONSIVE — iPad Landscape (≤1100px)
+    ============================================================ */
+    @media (max-width: 1100px) {
+      .hero-inner { gap: 44px; }
+      .hero h1 { font-size: clamp(40px, 4.8vw, 62px); }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .services-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .services-header .section-sub { text-align: left !important; max-width: 560px; margin-bottom: 8px; }
+      .process-steps { grid-template-columns: repeat(2, 1fr); gap: 36px; }
+      .process-steps::before { display: none; }
+      .ind-grid { grid-template-columns: repeat(2, 1fr) !important; }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 500px; margin-left: auto; margin-right: auto; }
+      .pricing-card.featured { order: -1; }
+    }
+
+    /* ============================================================
+       RESPONSIVE — iPad Portrait (≤768px)
+    ============================================================ */
+    @media (max-width: 768px) {
+      /* Nav */
+      .nav-links { display: none; }
+      .btn-nav-ghost { display: none; }
+      .nav-inner { gap: 0; }
+
+      /* Hero */
+      .hero { padding: 100px 0 60px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 44px; }
+      .hero h1 { font-size: clamp(36px, 7.5vw, 52px); }
+      .hero-sub { max-width: 100%; }
+      .hero-perf-badge { display: none !important; }
+
+      /* Services */
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .services-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .services-header .section-sub { text-align: left !important; max-width: 100%; }
+
+      /* Process */
+      .process-steps { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+      .process-steps::before { display: none; }
+
+      /* Gallery */
+      .ind-grid { grid-template-columns: repeat(2, 1fr) !important; }
+
+      /* Pricing */
+      .pricing-grid { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; }
+
+      /* About */
+      .about-grid { grid-template-columns: 1fr !important; gap: 44px !important; }
+
+      /* Footer */
+      .footer-top { grid-template-columns: 1fr; gap: 36px; }
+      .footer-col { text-align: center !important; }
+      .footer-brand { text-align: center !important; }
+
+      /* Reduce anim distance on tablet */
+      .anim-from-right { transform: translateX(36px) scale(0.97); }
+      .anim-from-left  { transform: translateX(-36px) scale(0.97); }
+    }
+
+    /* ============================================================
+       RESPONSIVE — Mobile / iPhone (≤640px)
+    ============================================================ */
+    @media (max-width: 640px) {
+      .container { padding: 0 16px; }
+
+      /* Nav — fully visible on all phones */
+      .nav-inner {
+        padding: 0 20px;
+        gap: 0;
+        height: 58px;
+        justify-content: space-between;
+      }
+      .nav-logo {
+        font-size: 19px;
+        flex-shrink: 0;
+        margin-right: 0;
+      }
+      .nav-right { gap: 0; margin-left: 0; }
+      .btn-nav-cta {
+        font-size: 12px;
+        padding: 8px 16px;
+        flex-shrink: 0;
+        white-space: nowrap;
+      }
+
+      /* Hero */
+      .hero { padding: 80px 0 52px; }
+      .hero h1 { font-size: clamp(28px, 9.5vw, 40px); letter-spacing: -0.025em; }
+      .hero-sub { font-size: 15px; }
+      .hero-actions { flex-direction: column; gap: 10px; }
+      .btn-hero-primary,
+      .btn-hero-ghost { display: block; text-align: center; width: 100%; }
+      .hero-float-badge { display: none; }
+      .hero-badge { font-size: 11px; }
+
+      /* Mockup height reduced on mobile */
+      .hero-mockup { border-radius: 10px; }
+      .hero-mockup > div { height: 230px !important; }
+
+      /* Sections padding */
+      .services    { padding: 64px 0; }
+      .process     { padding: 64px 0; }
+      .pricing     { padding: 64px 0; }
+      .cta-section { padding: 72px 0; }
+
+      /* Services */
+      .services-grid { grid-template-columns: 1fr; }
+      .service-card  { padding: 28px 22px; }
+
+      /* Process */
+      .process-steps { grid-template-columns: 1fr; gap: 22px; }
+
+      /* Section titles */
+      .section-title { font-size: clamp(26px, 8vw, 36px); }
+
+      /* Gallery */
+      .ind-grid { grid-template-columns: 1fr !important; }
+      .ind-card  { padding: 24px 20px !important; }
+
+      /* Pricing */
+      .pricing-grid { max-width: 100%; }
+      .pricing-card { padding: 28px 22px; }
+
+      /* About */
+      .about-grid img { height: 260px !important; }
+
+      /* CTA */
+      .cta-actions { flex-direction: column; gap: 10px; }
+      .cta-actions a { display: block; text-align: center; width: 100%; }
+
+      /* Footer */
+      .footer-top  { grid-template-columns: 1fr; }
+      .footer-logo { font-size: 22px; }
+
+      /* Tighter anim distances on mobile */
+      .anim-from-right { transform: translateX(24px) scale(0.97); }
+      .anim-from-left  { transform: translateX(-24px) scale(0.97); }
+      .anim-up  { transform: translateY(28px) scale(0.97); }
+      .anim-pop { transform: translateY(22px) scale(0.92); }
+    }
+
+    /* ============================================================
+       RESPONSIVE — Small iPhone (≤390px)
+    ============================================================ */
+    @media (max-width: 390px) {
+      .nav-inner { padding: 0 16px; }
+      .nav-logo { font-size: 17px; }
+      .btn-nav-cta { font-size: 11px; padding: 7px 11px; }
+      .hero h1 { font-size: 26px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">Sleek<span>.</span>Sites</a>
+      <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="nav-right">
+        <a href="#pricing" class="btn-nav-ghost">Pricing</a>
+        <a href="#contact" class="btn-nav-cta">Get Started</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid-lines"></div>
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="hero-badge hero-anim anim-up">
+          <span class="hero-badge-dot"></span>
+          Now Accepting New Clients
+        </div>
+        <h1>
+          <span class="anim-line hero-anim"><span class="anim-line-inner">Websites that</span></span>
+          <span class="anim-line hero-anim"><span class="anim-line-inner"><span class="gold">look premium.</span></span></span>
+          <span class="anim-line hero-anim"><span class="anim-line-inner"><span class="purple">Convert more.</span></span></span>
+        </h1>
+        <p class="hero-sub hero-anim anim-blur">We design and build fast, beautiful websites for businesses that want to stand out online — and turn visitors into customers.</p>
+        <div class="hero-actions hero-anim anim-up">
+          <a href="#contact" class="btn-hero-primary">Start Your Project</a>
+          <a href="#work" class="btn-hero-ghost">See Our Work</a>
+        </div>
+        <div class="hero-anim anim-blur" style="display:flex;align-items:center;gap:14px;margin-top:52px;">
+          <div style="height:1px;width:60px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.5));"></div>
+          <div style="height:1px;width:120px;background:linear-gradient(90deg,rgba(255,255,255,0.5),rgba(255,255,255,0.15));"></div>
+          <div style="height:1px;width:40px;background:linear-gradient(90deg,rgba(255,255,255,0.15),transparent);"></div>
+        </div>
+      </div>
+
+      <div class="hero-visual hero-anim anim-from-right">
+        <!-- Performance badge — top right -->
+        <div class="hero-perf-badge" style="position:absolute;top:-18px;right:-20px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:10px;box-shadow:0 12px 30px rgba(0,0,0,0.45);z-index:2;animation:badgeFloatAlt 6s ease-in-out 1s infinite;">
+          <div style="width:36px;height:36px;background:rgba(40,200,80,0.12);border:1px solid rgba(40,200,80,0.3);border-radius:8px;display:flex;align-items:center;justify-content:center;">
+            <span style="color:#4ade80;font-size:13px;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;">98</span>
+          </div>
+          <div>
+            <strong style="display:block;font-size:13px;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;color:var(--white);">Performance</strong>
+            <span style="font-size:11px;color:var(--white-dim);">Google PageSpeed</span>
+          </div>
+        </div>
+
+        <div class="hero-mockup">
+          <div class="mockup-bar">
+            <div class="mockup-dots">
+              <span style="background:#FF5F57"></span>
+              <span style="background:#FEBC2E"></span>
+              <span style="background:#28C840"></span>
+            </div>
+            <div class="mockup-url">yourcustomsite.com</div>
+          </div>
+
+          <!-- Animated website builder -->
+          <div style="position:relative;height:360px;background:var(--surface2);overflow:hidden;">
+            <div id="websiteBuilder" style="height:100%;transition:opacity 0.7s ease;">
+              <!-- Animated nav bar -->
+              <div class="wb-el" style="height:42px;background:rgba(14,14,30,0.85);border-bottom:1px solid rgba(255,255,255,0.05);display:flex;align-items:center;padding:0 18px;gap:14px;">
+                <div style="width:54px;height:8px;border-radius:4px;background:linear-gradient(90deg,var(--purple-mid),var(--gold-light));"></div>
+                <div style="display:flex;gap:10px;flex:1;">
+                  <div style="width:28px;height:6px;border-radius:3px;background:rgba(255,255,255,0.2);"></div>
+                  <div style="width:28px;height:6px;border-radius:3px;background:rgba(255,255,255,0.2);"></div>
+                  <div style="width:28px;height:6px;border-radius:3px;background:rgba(255,255,255,0.2);"></div>
+                </div>
+                <div style="width:58px;height:22px;border-radius:4px;background:var(--gold-light);opacity:0.9;"></div>
+              </div>
+
+              <!-- Hero text lines -->
+              <div style="padding:22px 20px 0;">
+                <div class="wb-el" style="height:15px;width:88%;border-radius:4px;background:linear-gradient(90deg,rgba(238,238,255,0.9),rgba(238,238,255,0.45));margin-bottom:10px;"></div>
+                <div class="wb-el" style="height:15px;width:72%;border-radius:4px;background:linear-gradient(90deg,rgba(238,238,255,0.75),rgba(238,238,255,0.35));margin-bottom:10px;"></div>
+                <div class="wb-el" style="height:15px;width:58%;border-radius:4px;background:linear-gradient(90deg,var(--gold-light),var(--gold));margin-bottom:16px;"></div>
+                <div class="wb-el" style="height:6px;width:84%;border-radius:3px;background:rgba(255,255,255,0.25);margin-bottom:7px;"></div>
+                <div class="wb-el" style="height:6px;width:64%;border-radius:3px;background:rgba(255,255,255,0.18);margin-bottom:18px;"></div>
+                <div class="wb-el" style="display:flex;gap:10px;">
+                  <div style="width:88px;height:28px;border-radius:5px;background:var(--gold-light);"></div>
+                  <div style="width:68px;height:28px;border-radius:5px;border:1px solid rgba(255,255,255,0.2);"></div>
+                </div>
+              </div>
+
+              <!-- Feature cards -->
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:20px 18px;">
+                <div class="wb-el" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:14px 12px;">
+                  <div style="width:26px;height:26px;border-radius:6px;background:rgba(123,47,224,0.28);border:1px solid rgba(123,47,224,0.4);margin-bottom:10px;"></div>
+                  <div style="width:68%;height:7px;border-radius:3px;background:rgba(255,255,255,0.6);margin-bottom:8px;"></div>
+                  <div style="height:5px;border-radius:3px;background:rgba(255,255,255,0.2);margin-bottom:6px;"></div>
+                  <div style="width:80%;height:5px;border-radius:3px;background:rgba(255,255,255,0.14);"></div>
+                </div>
+                <div class="wb-el" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:14px 12px;">
+                  <div style="width:26px;height:26px;border-radius:6px;background:rgba(123,47,224,0.28);border:1px solid rgba(123,47,224,0.4);margin-bottom:10px;"></div>
+                  <div style="width:58%;height:7px;border-radius:3px;background:rgba(255,255,255,0.6);margin-bottom:8px;"></div>
+                  <div style="height:5px;border-radius:3px;background:rgba(255,255,255,0.2);margin-bottom:6px;"></div>
+                  <div style="width:70%;height:5px;border-radius:3px;background:rgba(255,255,255,0.14);"></div>
+                </div>
+                <div class="wb-el" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:14px 12px;">
+                  <div style="width:26px;height:26px;border-radius:6px;background:rgba(201,162,39,0.22);border:1px solid rgba(201,162,39,0.35);margin-bottom:10px;"></div>
+                  <div style="width:74%;height:7px;border-radius:3px;background:rgba(255,255,255,0.6);margin-bottom:8px;"></div>
+                  <div style="height:5px;border-radius:3px;background:rgba(255,255,255,0.2);margin-bottom:6px;"></div>
+                  <div style="width:62%;height:5px;border-radius:3px;background:rgba(255,255,255,0.14);"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Progress bar -->
+            <div style="position:absolute;bottom:0;left:0;right:0;height:2px;background:rgba(255,255,255,0.05);">
+              <div id="wbProgress" style="height:100%;width:0%;background:linear-gradient(90deg,var(--purple),var(--gold-light));transition:width 0.35s ease;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom-left float badge -->
+        <div class="hero-float-badge">
+          <div class="float-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          </div>
+          <div class="float-text">
+            <strong>Significant Growth</strong>
+            <span>Our clients see significant growth in online leads</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="services-header anim-up">
+        <div>
+          <div class="section-tag">What We Build</div>
+          <h2 class="section-title">Everything your<br>business needs online</h2>
+        </div>
+        <p class="section-sub" style="text-align:right;">From landing pages to full e-commerce stores — designed to perform and built to last.</p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card anim-pop d-1">
+          <div class="service-num">01</div>
+          <div class="service-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h3>Landing Pages</h3>
+          <p>High-converting single pages built to capture leads, sell products, or launch your brand in a week or less.</p>
+        </div>
+
+        <div class="service-card anim-pop d-2">
+          <div class="service-num">02</div>
+          <div class="service-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <h3>Business Websites</h3>
+          <p>Full multi-page sites with all the sections your business needs — services, about, contact, and more.</p>
+        </div>
+
+        <div class="service-card anim-pop d-3">
+          <div class="service-num">03</div>
+          <div class="service-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          </div>
+          <h3>E-Commerce Stores</h3>
+          <p>Online stores that look great and sell — Shopify, WooCommerce, or custom-built to your exact needs.</p>
+        </div>
+
+        <div class="service-card anim-pop d-1">
+          <div class="service-num">04</div>
+          <div class="service-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          </div>
+          <h3>Redesigns</h3>
+          <p>Transform your outdated site into a modern, fast, and professional presence without starting from scratch.</p>
+        </div>
+
+        <div class="service-card anim-pop d-2">
+          <div class="service-num">05</div>
+          <div class="service-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </div>
+          <h3>SEO & Performance</h3>
+          <p>Every site we build is optimized for speed and search — so Google ranks you higher and visitors stay longer.</p>
+        </div>
+
+        <div class="service-card anim-pop d-3">
+          <div class="service-num">06</div>
+          <div class="service-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+          </div>
+          <h3>Ongoing Support</h3>
+          <p>Monthly maintenance plans to keep your site updated, secure, and improving — so you can focus on business.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process">
+    <div class="container process-inner">
+      <div class="anim-up" style="text-align:center;margin-bottom:0;">
+        <div class="section-tag" style="justify-content:center;">How It Works</div>
+        <h2 class="section-title">From idea to live<br>in as little as 7 days</h2>
+      </div>
+      <div class="process-steps">
+        <div class="step anim-up d-1">
+          <div class="step-num">1</div>
+          <h4>Discovery Call</h4>
+          <p>We learn about your business, goals, and who you're trying to reach — a free 30-min call.</p>
+        </div>
+        <div class="step anim-up d-2">
+          <div class="step-num">2</div>
+          <h4>Design & Build</h4>
+          <p>We design and develop your site. You review, approve, and request any changes.</p>
+        </div>
+        <div class="step anim-up d-3">
+          <div class="step-num">3</div>
+          <h4>Review & Revise</h4>
+          <p>Two rounds of revisions included — we don't stop until you're completely happy.</p>
+        </div>
+        <div class="step anim-up d-4">
+          <div class="step-num">4</div>
+          <h4>Launch</h4>
+          <p>We deliver your completed website files so you own everything. Need us to handle the launch and domain setup? We've got you for an additional <strong style="color:var(--gold-light);">$199.99</strong>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section style="padding:100px 0;background:var(--void);position:relative;overflow:hidden;">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 0%,rgba(123,47,224,0.1) 0%,transparent 70%);pointer-events:none;"></div>
+    <div class="container" style="position:relative;">
+      <div class="anim-up">
+        <div class="section-tag">Industries We Serve</div>
+        <h2 class="section-title">Website Styles</h2>
+        <p class="section-sub">We build for all kinds of businesses. Whatever your industry, we know how to make it look great online.</p>
+      </div>
+
+      <div class="ind-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:52px;">
+
+        <!-- Trades -->
+        <div class="ind-card anim-pop d-1" style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:32px 28px;transition:border-color 0.25s ease,transform 0.25s ease,box-shadow 0.25s ease;cursor:default;">
+          <div style="width:48px;height:48px;background:rgba(123,47,224,0.12);border:1px solid var(--border-purple);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--purple-light)" stroke-width="1.8"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          </div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-light);margin-bottom:10px;">Trades & Home Services</div>
+          <h3 style="font-size:20px;font-weight:700;color:var(--white);margin-bottom:14px;letter-spacing:-0.02em;">Built for the pros who show up</h3>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            <span class="ind-tag">Plumbers</span><span class="ind-tag">Electricians</span><span class="ind-tag">HVAC</span><span class="ind-tag">Roofers</span><span class="ind-tag">Landscapers</span><span class="ind-tag">Painters</span><span class="ind-tag">Cleaning</span><span class="ind-tag">Pest Control</span><span class="ind-tag">Contractors</span>
+          </div>
+        </div>
+
+        <!-- Food -->
+        <div class="ind-card anim-pop d-2" style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:32px 28px;transition:border-color 0.25s ease,transform 0.25s ease,box-shadow 0.25s ease;cursor:default;">
+          <div style="width:48px;height:48px;background:rgba(123,47,224,0.12);border:1px solid var(--border-purple);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--purple-light)" stroke-width="1.8"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+          </div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-light);margin-bottom:10px;">Food & Hospitality</div>
+          <h3 style="font-size:20px;font-weight:700;color:var(--white);margin-bottom:14px;letter-spacing:-0.02em;">Sites that make mouths water</h3>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            <span class="ind-tag">Restaurants</span><span class="ind-tag">Cafes</span><span class="ind-tag">Food Trucks</span><span class="ind-tag">Catering</span><span class="ind-tag">Bakeries</span><span class="ind-tag">Bars & Lounges</span>
+          </div>
+        </div>
+
+        <!-- Health -->
+        <div class="ind-card anim-pop d-3" style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:32px 28px;transition:border-color 0.25s ease,transform 0.25s ease,box-shadow 0.25s ease;cursor:default;">
+          <div style="width:48px;height:48px;background:rgba(123,47,224,0.12);border:1px solid var(--border-purple);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--purple-light)" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-light);margin-bottom:10px;">Health & Wellness</div>
+          <h3 style="font-size:20px;font-weight:700;color:var(--white);margin-bottom:14px;letter-spacing:-0.02em;">Clean, calming, and trustworthy</h3>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            <span class="ind-tag">Gyms</span><span class="ind-tag">Personal Trainers</span><span class="ind-tag">Salons</span><span class="ind-tag">Barbershops</span><span class="ind-tag">Massage</span><span class="ind-tag">Chiropractors</span><span class="ind-tag">Dentists</span>
+          </div>
+        </div>
+
+        <!-- Professional -->
+        <div class="ind-card anim-pop d-1" style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:32px 28px;transition:border-color 0.25s ease,transform 0.25s ease,box-shadow 0.25s ease;cursor:default;">
+          <div style="width:48px;height:48px;background:rgba(123,47,224,0.12);border:1px solid var(--border-purple);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--purple-light)" stroke-width="1.8"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          </div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-light);margin-bottom:10px;">Professional Services</div>
+          <h3 style="font-size:20px;font-weight:700;color:var(--white);margin-bottom:14px;letter-spacing:-0.02em;">Sharp, credible, and client-ready</h3>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            <span class="ind-tag">Real Estate</span><span class="ind-tag">Mortgage Brokers</span><span class="ind-tag">Accountants</span><span class="ind-tag">Lawyers</span><span class="ind-tag">Insurance Agents</span><span class="ind-tag">Financial Advisors</span>
+          </div>
+        </div>
+
+        <!-- Retail -->
+        <div class="ind-card anim-pop d-2" style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:32px 28px;transition:border-color 0.25s ease,transform 0.25s ease,box-shadow 0.25s ease;cursor:default;">
+          <div style="width:48px;height:48px;background:rgba(123,47,224,0.12);border:1px solid var(--border-purple);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--purple-light)" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          </div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-light);margin-bottom:10px;">Retail & Local</div>
+          <h3 style="font-size:20px;font-weight:700;color:var(--white);margin-bottom:14px;letter-spacing:-0.02em;">Local presence, online presence</h3>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            <span class="ind-tag">Boutique Shops</span><span class="ind-tag">Auto Repair</span><span class="ind-tag">Photographers</span><span class="ind-tag">Tutors & Coaches</span><span class="ind-tag">Daycares</span><span class="ind-tag">Pet Grooming</span>
+          </div>
+        </div>
+
+        <!-- CTA card -->
+        <div class="anim-pop d-3" style="background:linear-gradient(135deg,rgba(123,47,224,0.15) 0%,rgba(201,162,39,0.08) 100%);border:1px solid var(--border-purple);border-radius:14px;padding:32px 28px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;">
+          <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-light);margin-bottom:12px;">Don't see your industry?</div>
+          <h3 style="font-size:22px;font-weight:700;color:var(--white);margin-bottom:12px;letter-spacing:-0.02em;">We build for everyone.</h3>
+          <p style="font-size:14px;color:var(--white-dim);line-height:1.6;margin-bottom:24px;">If you have a business, we can build you a site. Reach out and let's talk.</p>
+          <a href="#contact" style="background:var(--gold-light);color:#080810;font-size:13px;font-weight:700;padding:11px 22px;border-radius:7px;text-decoration:none;font-family:'Plus Jakarta Sans',sans-serif;transition:background 0.2s ease,transform 0.15s ease;box-shadow:0 0 20px rgba(232,197,71,0.25);">Get in Touch</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <style>
+    .ind-card:hover { border-color: var(--border-purple); transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,0,0,0.3), 0 0 24px rgba(123,47,224,0.1); }
+    .ind-tag { background: var(--white-faint); border: 1px solid var(--border); border-radius: 100px; padding: 4px 12px; font-size: 12px; color: var(--white-dim); }
+  </style>
+
+  <!-- PRICING -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <div class="anim-up" style="text-align:center;">
+        <div class="section-tag" style="justify-content:center;">Pricing</div>
+        <h2 class="section-title">Simple, transparent pricing</h2>
+        <p class="section-sub" style="margin: 14px auto 0;text-align:center;">No hidden fees. No surprises. Just great websites at a fair price.</p>
+      </div>
+
+      <div class="pricing-grid">
+
+        <div class="pricing-card anim-pop d-1">
+          <div class="pricing-plan">Starter</div>
+          <div class="pricing-price"><sup>$</sup>499.99</div>
+          <div class="pricing-desc">A clean, professional site to get your business online fast.</div>
+          <ul class="pricing-features">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 3-page website (Home, About &amp; Contact, Menu, Order Online)</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Mobile friendly</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Contact information</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Social media links</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Online ordering integration</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Basic menu styling</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Client places their own photos</li>
+          </ul>
+          <div style="font-size:12px;color:var(--white-dim);margin-bottom:20px;padding:10px 12px;background:var(--white-faint);border-radius:6px;border:1px solid var(--border);">Optional: Maintenance <strong style="color:var(--gold-light);">$25/mo</strong></div>
+          <a href="#contact" class="btn-pricing btn-pricing-ghost">Get Started</a>
+        </div>
+
+        <div class="pricing-card featured anim-pop d-2">
+          <div class="featured-badge">Most Popular</div>
+          <div class="pricing-plan">Standard</div>
+          <div class="pricing-price"><sup>$</sup>749.99</div>
+          <div class="pricing-desc">Everything in Starter, with more pages and designer-placed photos.</div>
+          <ul class="pricing-features">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Everything in Starter</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Up to 2 additional pages of your choice</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Premium menu PDF styling</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Designer imports &amp; places your photos</li>
+          </ul>
+          <div style="font-size:12px;color:var(--white-dim);margin-bottom:20px;padding:10px 12px;background:var(--white-faint);border-radius:6px;border:1px solid var(--border);">Optional: Maintenance <strong style="color:var(--gold-light);">$25/mo</strong></div>
+          <a href="#contact" class="btn-pricing btn-pricing-solid">Get Started</a>
+        </div>
+
+        <div class="pricing-card anim-pop d-3">
+          <div class="pricing-plan">Premium</div>
+          <div class="pricing-price"><sup>$</sup>999.99</div>
+          <div class="pricing-desc">The full package — custom logo, photo editing, and social media graphics included.</div>
+          <ul class="pricing-features">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Everything in Standard</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Up to 4 additional pages of your choice</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Custom logo (3 concepts, 1 free revision)</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Professional photo optimization &amp; color grading</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 3 social media graphics</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Extra logo revisions $25 each</li>
+          </ul>
+          <div style="font-size:12px;color:var(--white-dim);margin-bottom:20px;padding:10px 12px;background:var(--white-faint);border-radius:6px;border:1px solid var(--border);">Optional: Maintenance <strong style="color:var(--gold-light);">$25/mo</strong></div>
+          <a href="#contact" class="btn-pricing btn-pricing-ghost">Get Started</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section style="padding:100px 0;background:var(--surface);position:relative;overflow:hidden;" id="about">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 50% 60% at 100% 50%,rgba(123,47,224,0.08) 0%,transparent 70%);pointer-events:none;"></div>
+    <div class="container" style="position:relative;">
+      <div class="about-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
+
+        <div class="anim-from-left">
+          <div class="section-tag">About Us</div>
+          <h2 class="section-title">We're a small team that does big work</h2>
+          <p style="font-size:16px;line-height:1.8;color:var(--white-dim);font-weight:300;margin-top:20px;">Sleek Sites was built on one idea: that every business deserves a website that actually looks good and brings in customers. Not a $10,000 agency quote. Not a DIY template. Something in between, done right.</p>
+          <p style="font-size:16px;line-height:1.8;color:var(--white-dim);font-weight:300;margin-top:16px;">We work directly with business owners. No account managers, no runaround. You talk to the person building your site. We keep it simple, fast, and affordable without cutting corners on quality.</p>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:40px;">
+            <div style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:20px 22px;">
+              <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:32px;font-weight:800;color:var(--gold-light);letter-spacing:-0.03em;">3-7 days</div>
+              <div style="font-size:13px;color:var(--white-dim);margin-top:4px;">Average turnaround time</div>
+            </div>
+            <div style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:20px 22px;">
+              <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:32px;font-weight:800;color:var(--gold-light);letter-spacing:-0.03em;">100%</div>
+              <div style="font-size:13px;color:var(--white-dim);margin-top:4px;">Custom, no templates</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="anim-from-right" style="position:relative;">
+          <div style="border-radius:16px;overflow:hidden;border:1px solid var(--border);box-shadow:0 30px 60px rgba(0,0,0,0.4),0 0 40px rgba(123,47,224,0.1);">
+            <img src="https://picsum.photos/seed/teamwork55/560/480" alt="About Sleek Sites" referrerpolicy="no-referrer" crossorigin="anonymous" style="width:100%;height:480px;object-fit:cover;display:block;filter:brightness(0.7) saturate(0.7);">
+            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(14,14,30,0.7) 0%,transparent 60%);border-radius:16px;"></div>
+          </div>
+          <div style="position:absolute;bottom:-20px;right:-20px;background:var(--surface2);border:1px solid var(--border-purple);border-radius:12px;padding:18px 22px;box-shadow:0 16px 32px rgba(0,0,0,0.4);">
+            <div style="font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold-light);margin-bottom:6px;">Our Promise</div>
+            <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;color:var(--white);line-height:1.4;">Simple.<br>Sleek.<br>Effective.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section" id="contact">
+    <div class="container">
+      <div class="cta-inner">
+        <div class="section-tag anim-up" style="justify-content:center;">Let's Build</div>
+        <h2 class="anim-up d-1">Ready for a site that<br><span>actually works?</span></h2>
+        <p class="anim-blur d-2">Book a free 10-minute call and we'll show you exactly what we'd build for your business. No pressure, no obligation.</p>
+        <div class="cta-actions anim-up d-3">
+          <a href="tel:+19784123130" class="btn-hero-primary">Book a Free Call</a>
+          <a href="mailto:jaydenbeal.ma@gmail.com" class="btn-hero-ghost">Email Us Instead</a>
+        </div>
+        <p style="margin-top:24px;font-size:13px;color:rgba(255,255,255,0.25);">jaydenbeal.ma@gmail.com &nbsp;·&nbsp; (978) 412-3130</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand anim-up" style="text-align:center;">
+          <div class="footer-logo">Sleek<span>.</span>Sites</div>
+          <p>We build fast, beautiful websites for businesses that want to grow online. Premium design at a price that makes sense.</p>
+        </div>
+        <div class="footer-col anim-up d-1" style="text-align:center;">
+          <h5>Services</h5>
+          <a href="#">Landing Pages</a>
+          <a href="#">Business Websites</a>
+          <a href="#">E-Commerce</a>
+          <a href="#">Redesigns</a>
+          <a href="#">SEO & Performance</a>
+        </div>
+        <div class="footer-col anim-up d-2" style="text-align:center;">
+          <h5>Contact</h5>
+          <a href="mailto:jaydenbeal.ma@gmail.com">jaydenbeal.ma@gmail.com</a>
+          <a href="tel:+19784123130">(978) 412-3130</a>
+          <a href="#">Instagram</a>
+        </div>
+      </div>
+      <hr class="footer-divider">
+      <div class="footer-bottom">
+        <span>© 2024 Sleek Sites. All rights reserved.</span>
+        <a href="privacy.html">Privacy &amp; Terms</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WEBSITE BUILDER ANIMATION -->
+  <style>
+    .wb-el {
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.45s ease, transform 0.45s ease;
+    }
+  </style>
+  <script>
+    (function() {
+      function showAll(els, bar) {
+        els.forEach(function(el) {
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+        });
+        bar.style.width = '100%';
+      }
+
+      function runBuildAnim() {
+        var builder = document.getElementById('websiteBuilder');
+        var els = builder.querySelectorAll('.wb-el');
+        var bar = document.getElementById('wbProgress');
+        var total = els.length;
+
+        // Fade out entire builder
+        builder.style.opacity = '0';
+        bar.style.width = '0%';
+
+        setTimeout(function() {
+          // Reset all hidden
+          els.forEach(function(el) {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(8px)';
+          });
+          builder.style.opacity = '1';
+
+          var stagger = 340;
+          var buildTime = total * stagger;
+
+          // Stagger reveal
+          els.forEach(function(el, i) {
+            setTimeout(function() {
+              el.style.opacity = '1';
+              el.style.transform = 'translateY(0)';
+              bar.style.width = Math.round((i + 1) / total * 100) + '%';
+            }, i * stagger + 200);
+          });
+
+          // Play once — no loop
+        }, 700);
+      }
+
+      // Show all immediately on load, then start loop after hold
+      window.addEventListener('load', function() {
+        var builder = document.getElementById('websiteBuilder');
+        var els = builder.querySelectorAll('.wb-el');
+        var bar = document.getElementById('wbProgress');
+        showAll(els, bar);
+        // Start first loop after 3s hold
+        setTimeout(runBuildAnim, 3000);
+      });
+    })();
+  </script>
+
+  <!-- ANIMATION SYSTEM -->
+  <style>
+    /* ── LINE REVEAL (hero headline) ── */
+    .anim-line {
+      display: block;
+      overflow: hidden;
+      padding-bottom: 0.06em;
+    }
+    .anim-line-inner {
+      display: block;
+      transform: translateY(110%);
+      transition: transform 0.95s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .anim-line.visible .anim-line-inner { transform: translateY(0); }
+
+    /* ── SLIDE UP + SCALE ── */
+    .anim-up {
+      opacity: 0;
+      transform: translateY(44px) scale(0.96);
+      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .anim-up.visible { opacity: 1; transform: none; }
+
+    /* ── SPRING POP (cards) ── */
+    .anim-pop {
+      opacity: 0;
+      transform: translateY(36px) scale(0.88);
+      transition: opacity 0.7s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .anim-pop.visible { opacity: 1; transform: none; }
+
+    /* ── BLUR FADE ── */
+    .anim-blur {
+      opacity: 0;
+      filter: blur(10px);
+      transform: translateY(18px);
+      transition: opacity 0.8s ease,
+                  filter 0.8s ease,
+                  transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .anim-blur.visible { opacity: 1; filter: blur(0); transform: none; }
+
+    /* ── SLIDE FROM RIGHT ── */
+    .anim-from-right {
+      opacity: 0;
+      transform: translateX(64px) scale(0.97);
+      transition: opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.95s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .anim-from-right.visible { opacity: 1; transform: none; }
+
+    /* ── SLIDE FROM LEFT ── */
+    .anim-from-left {
+      opacity: 0;
+      transform: translateX(-64px) scale(0.97);
+      transition: opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.95s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .anim-from-left.visible { opacity: 1; transform: none; }
+
+    /* ── DELAYS ── */
+    .d-1 { transition-delay: 0.08s; }
+    .d-2 { transition-delay: 0.17s; }
+    .d-3 { transition-delay: 0.27s; }
+    .d-4 { transition-delay: 0.38s; }
+    .d-5 { transition-delay: 0.50s; }
+    .d-6 { transition-delay: 0.63s; }
+
+    /* Line delay variants */
+    .anim-line.d-1 .anim-line-inner { transition-delay: 0.08s; }
+    .anim-line.d-2 .anim-line-inner { transition-delay: 0.17s; }
+    .anim-line.d-3 .anim-line-inner { transition-delay: 0.27s; }
+
+    /* ── PROCESS STEP NUMBER POP ── */
+    .step .step-num {
+      transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  opacity 0.4s ease,
+                  box-shadow 0.5s ease;
+    }
+    .step.anim-up .step-num { transform: scale(0.3); opacity: 0; }
+    .step.anim-up.visible .step-num { transform: scale(1); opacity: 1; }
+    .step.anim-up.d-1 .step-num { transition-delay: calc(0.08s + 0.3s); }
+    .step.anim-up.d-2 .step-num { transition-delay: calc(0.17s + 0.3s); }
+    .step.anim-up.d-3 .step-num { transition-delay: calc(0.27s + 0.3s); }
+    .step.anim-up.d-4 .step-num { transition-delay: calc(0.38s + 0.3s); }
+
+    /* ── SERVICE ICON POP ON CARD ENTRY ── */
+    .service-card .service-icon-wrap {
+      transition: transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) 0.25s,
+                  opacity 0.4s ease 0.25s;
+    }
+    .service-card.anim-pop .service-icon-wrap { transform: scale(0.4) rotate(-12deg); opacity: 0; }
+    .service-card.anim-pop.visible .service-icon-wrap { transform: none; opacity: 1; }
+
+    /* ── PRICING FEATURED GLOW PULSE ── */
+    @keyframes featuredPulse {
+      0%   { box-shadow: 0 0 0 1px rgba(123,47,224,0.2), 0 24px 48px rgba(123,47,224,0.1); }
+      45%  { box-shadow: 0 0 50px rgba(123,47,224,0.45), 0 0 0 2px rgba(123,47,224,0.5), 0 24px 56px rgba(123,47,224,0.2); }
+      100% { box-shadow: 0 0 0 1px rgba(123,47,224,0.2), 0 24px 48px rgba(123,47,224,0.1); }
+    }
+    .pricing-card.featured.anim-pop.visible {
+      animation: featuredPulse 1.8s ease 0.55s 1;
+    }
+
+    /* ── LEGACY COMPAT ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(36px) scale(0.97);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .fade-up.visible { opacity: 1; transform: none; }
+    .fade-in { opacity: 0; transition: opacity 0.8s ease; }
+    .fade-in.visible { opacity: 1; }
+    .fade-up.delay-1, .fade-in.delay-1 { transition-delay: 0.1s; }
+    .fade-up.delay-2, .fade-in.delay-2 { transition-delay: 0.2s; }
+    .fade-up.delay-3, .fade-in.delay-3 { transition-delay: 0.3s; }
+    .fade-up.delay-4, .fade-in.delay-4 { transition-delay: 0.4s; }
+    .fade-up.delay-5, .fade-in.delay-5 { transition-delay: 0.5s; }
+  </style>
+  <script>
+    (function() {
+      // ── HERO: fire immediately on load, staggered ──
+      document.addEventListener('DOMContentLoaded', function() {
+        var heroEls = document.querySelectorAll('.hero-anim');
+        heroEls.forEach(function(el, i) {
+          setTimeout(function() { el.classList.add('visible'); }, i * 80 + 80);
+        });
+      });
+
+      // ── SCROLL: IntersectionObserver for everything else ──
+      var obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+      document.addEventListener('DOMContentLoaded', function() {
+        var sel = '.anim-up:not(.hero-anim),.anim-pop:not(.hero-anim),.anim-blur:not(.hero-anim),.anim-from-right:not(.hero-anim),.anim-from-left:not(.hero-anim),.anim-line:not(.hero-anim),.fade-up,.fade-in';
+        document.querySelectorAll(sel).forEach(function(el) { obs.observe(el); });
+      });
+    })();
+  </script>
+
+  <!-- BACK TO TOP -->
+  <a href="#" id="back-to-top" style="position:fixed;bottom:32px;right:32px;width:46px;height:46px;background:var(--gold-light);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(201,162,39,0.35);opacity:0;pointer-events:none;transition:opacity 0.3s ease,transform 0.2s ease;z-index:999;">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#080810" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+  </a>
+  <script>
+    const btn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) {
+        btn.style.opacity = '1';
+        btn.style.pointerEvents = 'auto';
+      } else {
+        btn.style.opacity = '0';
+        btn.style.pointerEvents = 'none';
+      }
+    });
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>
