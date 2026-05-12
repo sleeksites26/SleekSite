@@ -3,7 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy & Terms — Sleek Sites</title>
+  <title>Privacy & Terms — Sleek Site</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg?v=3">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+  <!-- Open Graph / Social Preview -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sleeksite.co/privacy.html">
+  <meta property="og:title" content="Privacy & Terms — Sleek Site">
+  <meta property="og:description" content="Privacy Policy and Terms of Service for Sleek Site.">
+  <meta property="og:image" content="https://sleeksite.co/sleeksitelogo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Privacy & Terms — Sleek Site">
+  <meta name="twitter:description" content="Privacy Policy and Terms of Service for Sleek Site.">
+  <meta name="twitter:image" content="https://sleeksite.co/sleeksitelogo.png">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="Permissions-Policy"
@@ -27,19 +41,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Space+Grotesk:ital,wght@0,700;1,700&display=swap" rel="stylesheet" crossorigin="anonymous">
   <style>
     :root {
-      --void:         #070710;
-      --surface:      #0E0E1E;
-      --surface2:     #141428;
-      --purple:       #7B2FE0;
-      --purple-mid:   #9B5FEE;
-      --purple-light: #C4A0FF;
-      --gold:         #C9A227;
-      --gold-light:   #E8C547;
-      --white:        #EEEEFF;
-      --white-dim:    rgba(238,238,255,0.6);
-      --white-faint:  rgba(238,238,255,0.07);
-      --border:       rgba(255,255,255,0.07);
-      --border-purple:rgba(123,47,224,0.35);
+      --bg:         #080C14;
+      --surface:    rgba(255,255,255,0.05);
+      --surface2:   rgba(255,255,255,0.03);
+      --gold:       #8C7A42;
+      --gold-mid:   #A8904E;
+      --gold-light: #C9A960;
+      --text:       #F0F4FF;
+      --text-dim:   rgba(240,244,255,0.6);
+      --text-faint: rgba(240,244,255,0.32);
+      --border:     rgba(255,255,255,0.08);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -48,8 +59,8 @@
     body {
       font-family: 'Inter', sans-serif;
       font-size: 16px;
-      background: var(--void);
-      color: var(--white);
+      background: var(--bg);
+      color: var(--text);
       line-height: 1.7;
     }
 
@@ -58,9 +69,9 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(7,7,16,0.85);
+      background: rgba(8,12,20,0.97);
       backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
       padding: 0 28px;
       height: 64px;
       display: flex;
@@ -72,23 +83,23 @@
       font-size: 24px;
       font-weight: 700;
       font-style: italic;
-      color: var(--white);
+      color: #FFFFFF;
       text-decoration: none;
       letter-spacing: -0.02em;
     }
-    .nav-logo span { color: var(--gold-light); }
+    .nav-logo span { color: #3B82F6; }
     .nav-back {
       margin-left: auto;
       font-size: 13px;
       font-weight: 500;
-      color: var(--white-dim);
+      color: rgba(255,255,255,0.5);
       text-decoration: none;
       display: flex;
       align-items: center;
       gap: 6px;
       transition: color 0.2s ease;
     }
-    .nav-back:hover { color: var(--white); }
+    .nav-back:hover { color: #FFFFFF; }
 
     /* LAYOUT */
     .page-wrap {
@@ -101,7 +112,7 @@
     .tabs {
       display: flex;
       gap: 4px;
-      background: var(--surface2);
+      background: rgba(255,255,255,0.04);
       border: 1px solid var(--border);
       border-radius: 10px;
       padding: 4px;
@@ -113,7 +124,7 @@
       border-radius: 7px;
       border: none;
       background: transparent;
-      color: var(--white-dim);
+      color: var(--text-dim);
       font-family: 'Inter', sans-serif;
       font-size: 14px;
       font-weight: 500;
@@ -121,11 +132,11 @@
       transition: background 0.2s ease, color 0.2s ease;
     }
     .tab-btn.active {
-      background: var(--surface);
-      color: var(--white);
+      background: rgba(255,255,255,0.1);
+      color: var(--text);
       box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
-    .tab-btn:hover:not(.active) { color: var(--white); }
+    .tab-btn:hover:not(.active) { color: var(--text); }
 
     /* PANEL */
     .tab-panel { display: none; }
@@ -143,7 +154,7 @@
       font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--gold-light);
+      color: var(--gold);
       margin-bottom: 14px;
     }
     .doc-tag::before {
@@ -159,12 +170,12 @@
       font-weight: 800;
       letter-spacing: -0.03em;
       line-height: 1.1;
-      color: var(--white);
+      color: var(--text);
       margin-bottom: 10px;
     }
     .doc-date {
       font-size: 13px;
-      color: var(--white-dim);
+      color: var(--text-dim);
     }
 
     /* TOC */
@@ -174,31 +185,32 @@
       border-radius: 12px;
       padding: 22px 26px;
       margin-bottom: 44px;
+      backdrop-filter: blur(8px);
     }
     .toc p {
       font-size: 12px;
       font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.35);
+      color: var(--text-faint);
       margin-bottom: 14px;
     }
     .toc ul { list-style: none; }
     .toc ul li { padding: 4px 0; }
     .toc ul li a {
       font-size: 14px;
-      color: var(--purple-light);
+      color: var(--gold);
       text-decoration: none;
       transition: color 0.2s ease;
     }
-    .toc ul li a:hover { color: var(--white); }
+    .toc ul li a:hover { color: var(--text); }
 
     /* BODY CONTENT */
     .doc-body h2 {
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 22px;
       font-weight: 700;
-      color: var(--white);
+      color: var(--text);
       margin-top: 48px;
       margin-bottom: 14px;
       padding-bottom: 10px;
@@ -207,29 +219,29 @@
     }
     .doc-body p {
       font-size: 15px;
-      color: var(--white-dim);
+      color: var(--text-dim);
       margin-bottom: 16px;
       line-height: 1.75;
     }
-    .doc-body strong { color: var(--white); font-weight: 600; }
+    .doc-body strong { color: var(--text); font-weight: 600; }
     .doc-body ul {
       padding-left: 22px;
       margin-bottom: 18px;
     }
     .doc-body ul li {
       font-size: 15px;
-      color: var(--white-dim);
+      color: var(--text-dim);
       margin-bottom: 9px;
       line-height: 1.7;
     }
     .highlight {
-      background: rgba(123,47,224,0.1);
-      border-left: 3px solid var(--purple-mid);
+      background: rgba(140,122,66,0.08);
+      border-left: 3px solid var(--gold);
       padding: 14px 18px;
       border-radius: 0 8px 8px 0;
       margin-bottom: 20px;
       font-size: 14px;
-      color: var(--purple-light);
+      color: var(--gold-light);
       font-weight: 500;
     }
     .contact-box {
@@ -238,12 +250,14 @@
       border-radius: 12px;
       padding: 22px 26px;
       margin-top: 18px;
+      backdrop-filter: blur(8px);
     }
     .contact-box p {
       margin-bottom: 8px;
       font-size: 14px;
+      color: var(--text-dim);
     }
-    .contact-box a { color: var(--gold-light); text-decoration: none; }
+    .contact-box a { color: var(--gold); text-decoration: none; }
     .contact-box a:hover { text-decoration: underline; }
 
     /* FOOTER */
@@ -253,16 +267,16 @@
       padding-top: 32px;
       border-top: 1px solid var(--border);
       font-size: 13px;
-      color: rgba(255,255,255,0.25);
+      color: var(--text-faint);
     }
-    .doc-footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
-    .doc-footer a:hover { color: var(--white-dim); }
+    .doc-footer a { color: var(--text-dim); text-decoration: none; }
+    .doc-footer a:hover { color: var(--text); }
   </style>
 </head>
 <body>
 
   <nav>
-    <a href="index.html" class="nav-logo">Sleek<span>.</span>Sites</a>
+    <a href="index.html" class="nav-logo">Sleek<span>.</span>Site</a>
     <a href="index.html" class="nav-back">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
       Back to site
@@ -329,9 +343,9 @@
         <p>We use Google Analytics on our website to help us understand traffic patterns. Google Analytics collects usage data anonymously — it does not identify you personally.</p>
 
         <h2 id="share">Information we share</h2>
-        <p>We do not share your personal information with companies, organizations, or individuals outside of Sleek Sites unless one of the following circumstances applies:</p>
-        <p><strong>With your consent.</strong> We will share personal information outside of Sleek Sites when we have your permission to do so.</p>
-        <p><strong>For legal reasons.</strong> We will share personal information if we have a good-faith belief that doing so is necessary to meet any applicable law, regulation, or enforceable legal request — or to protect the rights, property, or safety of Sleek Sites or our clients.</p>
+        <p>We do not share your personal information with companies, organizations, or individuals outside of Sleek Site unless one of the following circumstances applies:</p>
+        <p><strong>With your consent.</strong> We will share personal information outside of Sleek Site when we have your permission to do so.</p>
+        <p><strong>For legal reasons.</strong> We will share personal information if we have a good-faith belief that doing so is necessary to meet any applicable law, regulation, or enforceable legal request — or to protect the rights, property, or safety of Sleek Site or our clients.</p>
         <p>We may share non-personally identifiable information publicly — for example, general statistics about website traffic trends.</p>
 
         <h2 id="choices">Transparency and your choices</h2>
@@ -361,7 +375,7 @@
         <h2 id="contact">Contact us</h2>
         <p>If you have any questions about this Privacy Policy or how we handle your information, please reach out to us. We are happy to help.</p>
         <div class="contact-box">
-          <p><strong>Sleek Sites</strong></p>
+          <p><strong>Sleek Site</strong></p>
           <p>Email: <a href="mailto:jaydenbeal.ma@gmail.com">jaydenbeal.ma@gmail.com</a></p>
           <p>Phone: <a href="tel:9784123130">(978) 412-3130</a></p>
           <p>Website: <a href="https://sleeksite.co" target="_blank" rel="noopener noreferrer">sleeksite.co</a></p>
@@ -379,17 +393,17 @@
 
       <div class="doc-body">
         <h2>Acceptance of Terms</h2>
-        <p>By engaging Sleek Sites for web design or development services — whether through our website, email, phone, or any other channel — you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.</p>
+        <p>By engaging Sleek Site for web design or development services — whether through our website, email, phone, or any other channel — you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.</p>
 
         <h2>Services Provided</h2>
-        <p>Sleek Sites provides custom web design and development services, including but not limited to landing pages, business websites, e-commerce stores, website redesigns, SEO optimization, and ongoing maintenance. The specific scope of work for each project is agreed upon before work begins.</p>
+        <p>Sleek Site provides custom web design and development services, including but not limited to landing pages, business websites, e-commerce stores, website redesigns, SEO optimization, and ongoing maintenance. The specific scope of work for each project is agreed upon before work begins.</p>
 
         <h2>Project Agreement & Payments</h2>
         <p>All projects begin with a written agreement outlining the scope, timeline, and pricing. Payment terms are as follows:</p>
         <ul>
           <li>A deposit is required before any design or development work begins</li>
           <li>Final payment is due upon project completion and before delivery of files or launch</li>
-          <li>Payments are non-refundable once work has begun, except where Sleek Sites fails to deliver the agreed scope</li>
+          <li>Payments are non-refundable once work has begun, except where Sleek Site fails to deliver the agreed scope</li>
           <li>Optional launch service (hosting setup, domain connection, and go-live support) is available for an additional $199.99</li>
         </ul>
 
@@ -406,16 +420,16 @@
         </ul>
 
         <h2>Intellectual Property</h2>
-        <p>Upon receipt of final payment, the client owns the completed website design and its content. Sleek Sites retains the right to display the work in its portfolio unless otherwise agreed in writing. Any third-party tools, plugins, or frameworks used remain subject to their respective licenses.</p>
+        <p>Upon receipt of final payment, the client owns the completed website design and its content. Sleek Site retains the right to display the work in its portfolio unless otherwise agreed in writing. Any third-party tools, plugins, or frameworks used remain subject to their respective licenses.</p>
 
         <h2>Turnaround Time</h2>
-        <p>Estimated turnaround times are provided as a general guide and are not guaranteed. Delays caused by late content delivery, revision cycles, or client response times are not the responsibility of Sleek Sites. We will always communicate clearly about timeline changes.</p>
+        <p>Estimated turnaround times are provided as a general guide and are not guaranteed. Delays caused by late content delivery, revision cycles, or client response times are not the responsibility of Sleek Site. We will always communicate clearly about timeline changes.</p>
 
         <h2>Limitation of Liability</h2>
-        <p>Sleek Sites is not liable for any indirect, incidental, or consequential damages arising from the use of, or inability to use, any website we deliver. Our total liability in any matter related to our services shall not exceed the amount paid by the client for the specific project in question.</p>
+        <p>Sleek Site is not liable for any indirect, incidental, or consequential damages arising from the use of, or inability to use, any website we deliver. Our total liability in any matter related to our services shall not exceed the amount paid by the client for the specific project in question.</p>
 
         <h2>Termination</h2>
-        <p>Either party may terminate the project agreement with written notice. If the client terminates after work has begun, any payments made are non-refundable. If Sleek Sites terminates, any remaining balance for incomplete work will be refunded.</p>
+        <p>Either party may terminate the project agreement with written notice. If the client terminates after work has begun, any payments made are non-refundable. If Sleek Site terminates, any remaining balance for incomplete work will be refunded.</p>
 
         <h2>Changes to These Terms</h2>
         <p>We may update these Terms of Service at any time. Continued use of our services after changes are posted constitutes acceptance of the updated terms. We encourage you to review this page periodically.</p>
@@ -423,7 +437,7 @@
         <h2>Contact</h2>
         <p>For questions about these terms, reach out any time.</p>
         <div class="contact-box">
-          <p><strong>Sleek Sites</strong></p>
+          <p><strong>Sleek Site</strong></p>
           <p>Email: <a href="mailto:jaydenbeal.ma@gmail.com">jaydenbeal.ma@gmail.com</a></p>
           <p>Phone: <a href="tel:9784123130">(978) 412-3130</a></p>
           <p>Website: <a href="https://sleeksite.co" target="_blank" rel="noopener noreferrer">sleeksite.co</a></p>
@@ -432,7 +446,7 @@
     </div>
 
     <div class="doc-footer">
-      <p>© 2026 Sleek Sites. All rights reserved. &nbsp;·&nbsp; <a href="index.html">Back to home</a></p>
+      <p>© 2026 Sleek Site. All rights reserved. &nbsp;·&nbsp; <a href="index.html">Back to home</a></p>
     </div>
 
   </div>
