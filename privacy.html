@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privacy & Terms — Sleek Site</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg?v=3">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 
   <!-- Open Graph / Social Preview -->
@@ -87,7 +86,7 @@
       text-decoration: none;
       letter-spacing: -0.02em;
     }
-    .nav-logo span { color: #3B82F6; }
+    .nav-logo span { color: #7C5CBF; }
     .nav-back {
       margin-left: auto;
       font-size: 13px;
@@ -271,6 +270,57 @@
     }
     .doc-footer a { color: var(--text-dim); text-decoration: none; }
     .doc-footer a:hover { color: var(--text); }
+
+    /* ── TABLET (768px) ── */
+    @media (max-width: 900px) {
+      .page-wrap { padding: 48px 24px 80px; }
+
+      .doc-header h1 { font-size: 32px; }
+
+      .tabs { width: 100%; justify-content: stretch; }
+      .tab-btn { flex: 1; text-align: center; padding: 10px 14px; font-size: 14px; }
+
+      .toc { padding: 18px 20px; }
+      .toc ul li a { font-size: 14px; }
+
+      .doc-body h2 { font-size: 20px; margin-top: 40px; }
+      .doc-body p,
+      .doc-body ul li { font-size: 15px; line-height: 1.8; }
+
+      .highlight { font-size: 14px; padding: 14px 16px; }
+      .contact-box { padding: 18px 20px; }
+    }
+
+    /* ── MOBILE (480px) ── */
+    @media (max-width: 480px) {
+      nav { padding: 0 18px; gap: 12px; }
+      .nav-logo { font-size: 20px; }
+      .nav-back { font-size: 12px; }
+
+      .page-wrap { padding: 32px 18px 64px; }
+
+      .doc-header { margin-bottom: 32px; }
+      .doc-header h1 { font-size: 28px; }
+      .doc-date { font-size: 12px; }
+
+      .tabs { margin-bottom: 36px; }
+      .tab-btn { padding: 9px 10px; font-size: 13px; }
+
+      .toc { padding: 16px 18px; margin-bottom: 32px; }
+      .toc p { font-size: 11px; }
+      .toc ul li a { font-size: 13px; }
+
+      .doc-body h2 { font-size: 18px; margin-top: 36px; padding-bottom: 8px; }
+      .doc-body p,
+      .doc-body ul li { font-size: 14px; line-height: 1.78; }
+      .doc-body ul { padding-left: 18px; }
+
+      .highlight { font-size: 13px; padding: 12px 14px; }
+      .contact-box { padding: 16px 18px; }
+      .contact-box p { font-size: 13px; }
+
+      .doc-footer { margin-top: 56px; font-size: 12px; line-height: 1.8; }
+    }
   </style>
 </head>
 <body>
@@ -296,84 +346,87 @@
       <div class="doc-header">
         <div class="doc-tag">Legal</div>
         <h1>Privacy Policy</h1>
-        <span class="doc-date">Last modified: May 10, 2026</span>
+        <span class="doc-date">Last modified: May 12, 2026</span>
       </div>
 
-      <p style="font-size:15px;color:var(--white-dim);margin-bottom:16px;line-height:1.75;">There are many different ways you can use our services — from getting a brand new website built for your business, to ongoing maintenance and design work. When you share information with us, we can provide you with a better, more personalized experience. We want to be clear about how we use your information and the ways you can protect your privacy.</p>
-
-      <p style="font-size:15px;color:var(--white-dim);margin-bottom:20px;">Our Privacy Policy explains:</p>
+      <p style="font-size:15px;color:var(--text-dim);margin-bottom:16px;line-height:1.75;">This Privacy Policy describes how Sleek Site ("we," "us," or "our") collects, uses, and protects information you provide when you visit our website or engage our services. By using our website or hiring us, you agree to the practices described here.</p>
 
       <div class="toc">
         <p>What's in this policy</p>
         <ul>
-          <li><a href="#collect">What information we collect and why we collect it</a></li>
-          <li><a href="#use">How we use that information</a></li>
-          <li><a href="#share">When we share information</a></li>
-          <li><a href="#choices">The choices we offer</a></li>
-          <li><a href="#security">How we keep your information safe</a></li>
-          <li><a href="#changes">Changes to this policy</a></li>
-          <li><a href="#contact">How to contact us</a></li>
+          <li><a href="#pp-collect">Information we collect</a></li>
+          <li><a href="#pp-use">How we use your information</a></li>
+          <li><a href="#pp-share">When we share information</a></li>
+          <li><a href="#pp-retention">Data retention</a></li>
+          <li><a href="#pp-third">Third-party services</a></li>
+          <li><a href="#pp-rights">Your rights and choices</a></li>
+          <li><a href="#pp-security">Security</a></li>
+          <li><a href="#pp-children">Children's privacy</a></li>
+          <li><a href="#pp-changes">Changes to this policy</a></li>
+          <li><a href="#pp-contact">Contact us</a></li>
         </ul>
       </div>
 
       <div class="doc-body">
-        <h2 id="collect">Information we collect</h2>
-        <p>We collect information to provide better services to everyone we work with — from understanding what kind of website you need, to keeping you updated on your project's progress.</p>
-        <p>We collect information in the following ways:</p>
-        <p><strong>Information you give us.</strong> When you reach out to us for a quote, fill out our contact form, or hire us to build your website, we ask for personal information like your name, email address, phone number, and business name. This helps us communicate with you and deliver your project.</p>
-        <p><strong>Information we get from your use of our website.</strong> We collect information about how visitors interact with our website, including which pages are visited and how long visitors spend on each page. This information includes:</p>
+        <h2 id="pp-collect">Information we collect</h2>
+        <p><strong>Information you provide directly.</strong> When you contact us, request a quote, or hire us, we may collect your name, email address, phone number, business name, website URL, and any other details you share with us voluntarily.</p>
+        <p><strong>Automatically collected information.</strong> When you visit our website, we may automatically collect certain technical data including:</p>
         <ul>
-          <li><strong>Usage data</strong> — details about how you navigated our site, such as pages visited and links clicked</li>
-          <li><strong>Device information</strong> — browser type, operating system, and screen size so we can ensure our site works well for you</li>
-          <li><strong>Location information</strong> — general location based on your IP address</li>
+          <li>IP address and approximate geographic location</li>
+          <li>Browser type and version, operating system, and device type</li>
+          <li>Pages visited, time spent on each page, and referring URLs</li>
+          <li>Clicks and navigation behavior on our site</li>
         </ul>
-        <p><strong>Cookies and similar technologies.</strong> We use cookies to collect and store information when you visit our website. Cookies help us understand how our site is being used and improve the experience for future visitors.</p>
+        <p><strong>Cookies.</strong> We use cookies and similar tracking technologies to improve your experience on our website. You may disable cookies in your browser settings, though some site features may not function correctly as a result.</p>
 
-        <h2 id="use">How we use information we collect</h2>
-        <p>We use the information we collect from our website and services to provide, maintain, and improve what we offer — and to communicate with you clearly throughout your project.</p>
-        <div class="highlight">We will never use your information to send unsolicited marketing emails or share your data with advertisers.</div>
-        <p>Specifically, we use your information to:</p>
+        <h2 id="pp-use">How we use your information</h2>
+        <p>We use the information we collect solely for legitimate business purposes, including:</p>
         <ul>
-          <li>Deliver the web design and development services you hired us for</li>
-          <li>Send you project updates, invoices, and important communications</li>
-          <li>Respond to your questions and support requests</li>
-          <li>Understand how our website is being used so we can improve it</li>
-          <li>Comply with any legal obligations we may have</li>
+          <li>Delivering the web design and development services you hired us for</li>
+          <li>Communicating with you about your project, invoices, and updates</li>
+          <li>Responding to inquiries and support requests</li>
+          <li>Improving our website and service offerings</li>
+          <li>Complying with applicable laws and legal obligations</li>
         </ul>
-        <p>We use Google Analytics on our website to help us understand traffic patterns. Google Analytics collects usage data anonymously — it does not identify you personally.</p>
+        <div class="highlight">We will never sell your personal information. We will never use your contact details to send unsolicited marketing or share your data with advertisers.</div>
 
-        <h2 id="share">Information we share</h2>
-        <p>We do not share your personal information with companies, organizations, or individuals outside of Sleek Site unless one of the following circumstances applies:</p>
-        <p><strong>With your consent.</strong> We will share personal information outside of Sleek Site when we have your permission to do so.</p>
-        <p><strong>For legal reasons.</strong> We will share personal information if we have a good-faith belief that doing so is necessary to meet any applicable law, regulation, or enforceable legal request — or to protect the rights, property, or safety of Sleek Site or our clients.</p>
-        <p>We may share non-personally identifiable information publicly — for example, general statistics about website traffic trends.</p>
-
-        <h2 id="choices">Transparency and your choices</h2>
-        <p>We want you to feel in control of your information. Here is what you can do:</p>
+        <h2 id="pp-share">When we share information</h2>
+        <p>We do not sell, rent, or trade your personal information. We may share information only in the following limited circumstances:</p>
         <ul>
-          <li><strong>Opt out of communications.</strong> You can ask us to stop sending you emails at any time by replying to any email we send or contacting us directly.</li>
-          <li><strong>Request your data.</strong> You can ask us what personal information we hold about you at any time.</li>
-          <li><strong>Request deletion.</strong> You can ask us to delete any personal information we hold about you, and we will do so unless we are legally required to keep it.</li>
-          <li><strong>Manage cookies.</strong> You can set your browser to block or delete cookies at any time. Note that some parts of our website may not work correctly without cookies enabled.</li>
+          <li><strong>With your consent</strong> — when you have explicitly authorized us to do so</li>
+          <li><strong>Service providers</strong> — trusted third parties who assist in delivering our services (e.g., email platforms, invoicing tools), bound by confidentiality obligations</li>
+          <li><strong>Legal compliance</strong> — when required by law, court order, or government authority, or to protect our rights and the safety of others</li>
+          <li><strong>Business transfer</strong> — in the event of a merger, acquisition, or sale of assets, your information may be transferred as part of that transaction</li>
         </ul>
 
-        <h2 id="security">Information security</h2>
-        <p>We work hard to protect your information from unauthorized access, alteration, disclosure, or destruction. Specifically:</p>
+        <h2 id="pp-retention">Data retention</h2>
+        <p>We retain your personal information only for as long as necessary to fulfill the purposes described in this policy or as required by law. Client project records are typically retained for a minimum of three (3) years for accounting and legal purposes. You may request deletion of your data at any time, subject to legal retention requirements.</p>
+
+        <h2 id="pp-third">Third-party services</h2>
+        <p>Our website may use third-party tools including but not limited to Google Analytics for anonymous traffic analysis. These services operate under their own privacy policies. We are not responsible for the privacy practices of third-party services. Links to external websites from our site are provided for convenience only — we are not responsible for the content or privacy practices of those sites.</p>
+
+        <h2 id="pp-rights">Your rights and choices</h2>
+        <p>Depending on your location, you may have the following rights regarding your personal information:</p>
         <ul>
-          <li>Our website uses SSL encryption to protect data transmitted between your browser and our site</li>
-          <li>We limit access to personal information to only those who need it to deliver your project</li>
-          <li>We regularly review our data practices to ensure your information stays safe</li>
+          <li><strong>Access</strong> — request a copy of the personal data we hold about you</li>
+          <li><strong>Correction</strong> — request that we correct inaccurate information</li>
+          <li><strong>Deletion</strong> — request that we delete your personal data, subject to legal obligations</li>
+          <li><strong>Opt-out</strong> — opt out of any non-essential communications at any time by contacting us directly</li>
+          <li><strong>Data portability</strong> — request your data in a structured, commonly used format</li>
         </ul>
-        <p>While we do our best to protect your data, no method of transmission over the internet is 100% secure. We want to be transparent about that.</p>
+        <p>California residents may have additional rights under the California Consumer Privacy Act (CCPA). To exercise any of these rights, contact us using the information below.</p>
 
-        <h2>Children's privacy</h2>
-        <p>We do not direct our services to individuals under the age of 13, and we do not knowingly collect personal information from children under 13. If you believe we have inadvertently collected such information, please contact us immediately and we will remove it.</p>
+        <h2 id="pp-security">Security</h2>
+        <p>We take reasonable technical and organizational measures to protect your information from unauthorized access, disclosure, alteration, or destruction, including SSL encryption on our website and restricted internal access to personal data. However, no method of transmission over the internet is 100% secure and we cannot guarantee absolute security.</p>
 
-        <h2 id="changes">Changes to this policy</h2>
-        <p>We may update this Privacy Policy from time to time as our services grow and evolve. When we make changes we will post the updated policy on this page with a new modification date. We encourage you to check back periodically — especially if you are a returning client — so you always know how we are protecting your information.</p>
+        <h2 id="pp-children">Children's privacy</h2>
+        <p>Our services are not directed to individuals under the age of 18. We do not knowingly collect personal information from minors. If you believe we have inadvertently collected such information, please contact us immediately and we will promptly delete it.</p>
 
-        <h2 id="contact">Contact us</h2>
-        <p>If you have any questions about this Privacy Policy or how we handle your information, please reach out to us. We are happy to help.</p>
+        <h2 id="pp-changes">Changes to this policy</h2>
+        <p>We may update this Privacy Policy periodically. When we do, we will revise the "Last modified" date at the top of this page. Continued use of our website or services after changes are posted constitutes your acceptance of the updated policy. We encourage you to review this page periodically.</p>
+
+        <h2 id="pp-contact">Contact us</h2>
+        <p>For any questions, requests, or concerns regarding this Privacy Policy, please contact us directly.</p>
         <div class="contact-box">
           <p><strong>Sleek Site</strong></p>
           <p>Email: <a href="mailto:jaydenbeal.ma@gmail.com">jaydenbeal.ma@gmail.com</a></p>
@@ -388,54 +441,82 @@
       <div class="doc-header">
         <div class="doc-tag">Legal</div>
         <h1>Terms of Service</h1>
-        <span class="doc-date">Last modified: May 10, 2026</span>
+        <span class="doc-date">Last modified: May 12, 2026</span>
       </div>
 
       <div class="doc-body">
-        <h2>Acceptance of Terms</h2>
-        <p>By engaging Sleek Site for web design or development services — whether through our website, email, phone, or any other channel — you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.</p>
+        <h2>1. Acceptance of Terms</h2>
+        <p>By engaging Sleek Site ("we," "us," "our") for web design, development, or any related services — whether through our website, email, phone, or any other channel — you ("Client") agree to be bound by these Terms of Service in their entirety. If you do not agree, do not use our services.</p>
 
-        <h2>Services Provided</h2>
-        <p>Sleek Site provides custom web design and development services, including but not limited to landing pages, business websites, e-commerce stores, website redesigns, SEO optimization, and ongoing maintenance. The specific scope of work for each project is agreed upon before work begins.</p>
+        <h2>2. Services</h2>
+        <p>Sleek Site provides custom web design and development services including, but not limited to, landing pages, business websites, e-commerce stores, website redesigns, SEO optimization, and ongoing maintenance plans. The specific deliverables, timeline, and pricing for each project are confirmed in writing before work begins. Any scope changes must be agreed upon in writing by both parties.</p>
 
-        <h2>Project Agreement & Payments</h2>
-        <p>All projects begin with a written agreement outlining the scope, timeline, and pricing. Payment terms are as follows:</p>
+        <h2>3. Payments & Deposits</h2>
+        <p>All projects require payment as follows:</p>
         <ul>
-          <li>A deposit is required before any design or development work begins</li>
-          <li>Final payment is due upon project completion and before delivery of files or launch</li>
-          <li>Payments are non-refundable once work has begun, except where Sleek Site fails to deliver the agreed scope</li>
-          <li>Optional launch service (hosting setup, domain connection, and go-live support) is available for an additional $199.99</li>
+          <li><strong>Deposit:</strong> A non-refundable deposit of 50% of the total project fee is required before any design or development work begins. Work will not commence until the deposit is received.</li>
+          <li><strong>Final payment:</strong> The remaining 50% balance is due upon project completion and before delivery of final files, website transfer, or live launch.</li>
+          <li><strong>Late payments:</strong> Invoices unpaid after 14 days may result in work being paused or withheld until payment is received.</li>
+          <li><strong>Launch service:</strong> Optional managed launch (hosting setup, domain connection, and go-live support) is available for an additional $50. Domain registration fees are not included and are the client's responsibility.</li>
+          <li><strong>Maintenance plans:</strong> Monthly maintenance plans are billed in advance on a recurring monthly basis and may be cancelled with 30 days written notice. No refunds are issued for partial months.</li>
         </ul>
+        <div class="highlight">All sales are final. Deposits and payments made after work has commenced are non-refundable unless Sleek Site fails to deliver the agreed scope.</div>
 
-        <h2>Revisions</h2>
-        <p>Each package includes a defined number of revision rounds. Requests beyond the included revisions may be billed at an hourly rate, which will be communicated before any additional work is performed.</p>
+        <h2>4. Revisions</h2>
+        <p>Each package includes two (2) rounds of revisions. A "revision round" is defined as a consolidated set of changes submitted at one time. Additional revision rounds beyond the included two are billed at $75 per round and must be approved in writing before work begins. Revisions do not include new features, pages, or scope changes — those are treated as new work and quoted separately.</p>
 
-        <h2>Client Responsibilities</h2>
-        <p>To ensure timely project delivery, clients agree to:</p>
+        <h2>5. Client Responsibilities</h2>
+        <p>The Client agrees to:</p>
         <ul>
-          <li>Provide all required content, images, and copy in a timely manner</li>
-          <li>Respond to questions and review requests within a reasonable timeframe</li>
+          <li>Provide all required content, images, copy, logos, and business information within 7 days of project kickoff</li>
+          <li>Respond to review requests and questions within 5 business days — delays caused by the Client may extend the project timeline accordingly</li>
+          <li>Ensure they own or have proper licenses for all content, images, logos, and materials they provide</li>
           <li>Provide accurate business information for use on the website</li>
-          <li>Ensure they have the rights to any logos, images, or content they supply</li>
+          <li>Not hold Sleek Site responsible for errors caused by inaccurate or incomplete information provided by the Client</li>
         </ul>
 
-        <h2>Intellectual Property</h2>
-        <p>Upon receipt of final payment, the client owns the completed website design and its content. Sleek Site retains the right to display the work in its portfolio unless otherwise agreed in writing. Any third-party tools, plugins, or frameworks used remain subject to their respective licenses.</p>
+        <h2>6. Intellectual Property & Ownership</h2>
+        <p>Upon receipt of full and final payment, the Client owns the completed website design and all custom-created content. Until full payment is received, all work product remains the intellectual property of Sleek Site.</p>
+        <p>Sleek Site retains the right to display completed work in its portfolio and marketing materials unless the Client requests otherwise in writing prior to project completion. Third-party assets, plugins, fonts, or frameworks incorporated into the project remain subject to their own respective licenses — the Client is responsible for maintaining any required licenses after delivery.</p>
 
-        <h2>Turnaround Time</h2>
-        <p>Estimated turnaround times are provided as a general guide and are not guaranteed. Delays caused by late content delivery, revision cycles, or client response times are not the responsibility of Sleek Site. We will always communicate clearly about timeline changes.</p>
+        <h2>7. Turnaround Time</h2>
+        <p>Estimated project timelines are provided in good faith and are not a guaranteed delivery date. Timelines begin once the deposit is received and all required content is provided by the Client. Delays caused by late content delivery, slow client feedback, revision cycles beyond the included rounds, or circumstances outside our control are not the responsibility of Sleek Site. We will communicate proactively about any timeline changes.</p>
 
-        <h2>Limitation of Liability</h2>
-        <p>Sleek Site is not liable for any indirect, incidental, or consequential damages arising from the use of, or inability to use, any website we deliver. Our total liability in any matter related to our services shall not exceed the amount paid by the client for the specific project in question.</p>
+        <h2>8. No Guarantee of Results</h2>
+        <p>Sleek Site makes no guarantees regarding specific business outcomes, including but not limited to search engine rankings, website traffic levels, conversion rates, sales, or revenue. While we build websites optimized for performance and search, results depend on many factors outside our control including market conditions, competition, and client-side actions after delivery.</p>
 
-        <h2>Termination</h2>
-        <p>Either party may terminate the project agreement with written notice. If the client terminates after work has begun, any payments made are non-refundable. If Sleek Site terminates, any remaining balance for incomplete work will be refunded.</p>
+        <h2>9. Confidentiality</h2>
+        <p>Both parties agree to keep confidential any proprietary business information, strategies, pricing, or materials shared during the course of the project. Neither party will disclose the other's confidential information to any third party without prior written consent. This obligation survives termination of the project.</p>
 
-        <h2>Changes to These Terms</h2>
-        <p>We may update these Terms of Service at any time. Continued use of our services after changes are posted constitutes acceptance of the updated terms. We encourage you to review this page periodically.</p>
+        <h2>10. Limitation of Liability</h2>
+        <p>To the maximum extent permitted by applicable law, Sleek Site shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of revenue, loss of profits, loss of business, loss of data, or business interruption, arising from the use of or inability to use any website or service we provide — even if we have been advised of the possibility of such damages.</p>
+        <p>Our total cumulative liability for any claims arising out of or related to our services shall not exceed the total amount paid by the Client for the specific project giving rise to the claim.</p>
 
-        <h2>Contact</h2>
-        <p>For questions about these terms, reach out any time.</p>
+        <h2>11. Indemnification</h2>
+        <p>The Client agrees to indemnify, defend, and hold harmless Sleek Site and its owners, employees, and contractors from and against any claims, damages, losses, costs, and expenses (including reasonable legal fees) arising from: (a) the Client's breach of these Terms; (b) content or materials provided by the Client; (c) the Client's use of the delivered website; or (d) any claim that Client-provided content infringes a third party's intellectual property rights.</p>
+
+        <h2>12. Termination & Cancellation</h2>
+        <p>Either party may terminate the project with written notice. The following terms apply upon termination:</p>
+        <ul>
+          <li><strong>Client-initiated cancellation:</strong> All deposits and payments made are non-refundable. If the project is more than 50% complete at time of cancellation, the full project fee is owed.</li>
+          <li><strong>Sleek Site-initiated termination:</strong> If we terminate the project without cause, we will refund any payments made for work not yet performed.</li>
+          <li><strong>Cause for termination:</strong> Sleek Site reserves the right to immediately terminate services if the Client engages in abusive behavior, requests illegal or unethical content, or fails to make payment when due.</li>
+        </ul>
+
+        <h2>13. Force Majeure</h2>
+        <p>Neither party shall be held liable for delays or failures caused by circumstances beyond their reasonable control, including but not limited to natural disasters, illness, internet outages, platform failures, or other events of force majeure. The affected party will notify the other as soon as reasonably possible.</p>
+
+        <h2>14. Governing Law & Disputes</h2>
+        <p>These Terms of Service shall be governed by and construed in accordance with the laws of the Commonwealth of Massachusetts, without regard to its conflict of law provisions. Any dispute arising out of or related to these Terms or our services shall first be attempted to be resolved through good-faith negotiation. If unresolved, disputes shall be submitted to binding arbitration in Massachusetts in accordance with applicable arbitration rules, unless both parties agree otherwise in writing.</p>
+
+        <h2>15. Entire Agreement</h2>
+        <p>These Terms of Service, together with any written project agreement or proposal agreed upon by both parties, constitute the entire agreement between Sleek Site and the Client regarding the services and supersede all prior discussions, representations, or agreements. If any provision of these Terms is found to be unenforceable, the remaining provisions will continue in full force and effect.</p>
+
+        <h2>16. Changes to These Terms</h2>
+        <p>We may update these Terms of Service at any time. The updated version will be posted on this page with a revised date. Continued use of our services after updates are posted constitutes acceptance of the revised Terms.</p>
+
+        <h2>17. Contact</h2>
+        <p>For any questions about these Terms, please contact us directly.</p>
         <div class="contact-box">
           <p><strong>Sleek Site</strong></p>
           <p>Email: <a href="mailto:jaydenbeal.ma@gmail.com">jaydenbeal.ma@gmail.com</a></p>
@@ -446,7 +527,7 @@
     </div>
 
     <div class="doc-footer">
-      <p>© 2026 Sleek Site. All rights reserved. &nbsp;·&nbsp; <a href="index.html">Back to home</a></p>
+      <p>© 2026 Sleek Site. All rights reserved. &nbsp;·&nbsp; <a href="index.html">Back to home</a> &nbsp;·&nbsp; These terms do not constitute legal advice. Consult a qualified attorney for legal guidance specific to your situation.</p>
     </div>
 
   </div>
